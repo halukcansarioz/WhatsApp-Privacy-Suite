@@ -1,6 +1,6 @@
 # 🛡️ WhatsApp Web Privacy Suite
 ### (Automated Multi-Section Privacy & Contact Exclusion System for WhatsApp Web)
-
+[![CI](https://github.com/halukcansarioz/WhatsApp-Privacy-Suite/actions/workflows/ci.yml/badge.svg)](https://githubcom/.halukcansarioz/WhatsApp-Privacy-Suite/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)](#)
 [![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)](#)
@@ -32,6 +32,21 @@ Managing WhatsApp privacy exclusions manually across hundreds of contacts and mu
 - **Version:** v24 Final Studio Edition
 
 ---
+---
+
+## Architecture
+
+```mermaid
+flowchart TD
+    User["User"] --> Mode{"Execution Mode"}
+    Mode -->|Browser Console| JS["whatsapp_pp_gizlilik_otomasyonu.js (Studio UI)"]
+    Mode -->|Desktop CLI| PY["whatsapp_oto_gizlilik.py (Python + Playwright)"]
+    JS --> WA["WhatsApp Web (web.whatsapp.com)"]
+    PY --> WA
+    WA --> Guard["Absolute Photo-Guard (5-Layer Avatar Detection)"]
+    Guard --> Sync["Sync Exclusions: Last Seen, Photo, About, Status, Groups"]
+```
+
 
 ## Features
 - **Absolute Photo-Guard** — 5-layer avatar detection (`<img>`, `<svg><image>`, `<canvas>`, inline & computed `background-image`) with lazy-load settling ensures contacts with real profile photos are never checked.
